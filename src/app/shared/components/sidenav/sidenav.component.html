@@ -1,0 +1,48 @@
+<!-- Side Nav -->
+<!-- Logo -->
+<span routerLink="/" class="sidenav-logo clickable">
+  <img src="../../../../assets/img/logo.png" alt="" />
+</span>
+<nav>
+  <ul class="sidenav-list">
+    <li
+      class="clickable"
+      routerLinkActive="active"
+      routerLink="/dashboard"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img src="../../../../assets/img/svg/dashboard.svg" alt="" />Dashboard
+    </li>
+    <li
+      class="clickable"
+      routerLinkActive="active"
+      routerLink="/dashboard/pages"
+    >
+      <img src="../../../../assets/img/svg/Group.svg" alt="" />Pages
+    </li>
+    <li
+      class="clickable"
+      routerLinkActive="active"
+      routerLink="/dashboard/menu"
+    >
+      <img src="../../../../assets/img/svg/menu.svg" alt="" />Menu
+    </li>
+    <li class="clickable" routerLinkActive="" routerLink="/dashboard">
+      <img src="../../../../assets/img/svg/tax form.svg" alt="" />
+      Contact Form
+    </li>
+    <li class="clickable" routerLinkActive="" routerLink="/dashboard">
+      <img
+        src="../../../../assets/img/svg/Folder Customization.svg"
+        alt=""
+      />Customization
+    </li>
+    <li class="clickable" routerLinkActive="" routerLink="/dashboard">
+      <img src="../../../../assets/img/svg/Settings.svg" alt="" />Site Settings
+    </li>
+  </ul>
+</nav>
+<span class="logout clickable" (click)="logOut()">
+  <img src="../../../../assets/img/svg/Logout.svg" alt="" />
+  Log Out
+</span>

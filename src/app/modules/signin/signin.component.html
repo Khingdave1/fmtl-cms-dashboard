@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="auth-image">
+    <div class="auth-image-bg"></div>
+  </div>
+  <div class="auth-content">
+    <div class="auth-content-header">
+      <span class="logo">
+        <img src="../../../assets/img/logo.png" alt="image" />
+      </span>
+      <h3>Admin Login</h3>
+      <p>You’re a step away from an awesome experience</p>
+    </div>
+    <form (ngSubmit)="signin(usersForm.value)" #usersForm="ngForm">
+      <div class="form-field">
+        <input type="text" placeholder="Email Address" ngModel name="email" />
+      </div>
+      <div class="form-field">
+        <input
+          type="password"
+          placeholder="Password"
+          ngModel
+          name="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <img
+          [src]="
+            hide
+              ? '../../../assets/img/svg/bx-show.svg'
+              : '../../../assets/img/svg/bx-hide.svg'
+          "
+          class="clickable"
+          (click)="hide = !hide"
+        />
+      </div>
+      <span class="message" [class.show]="showError">{{ errorMessage }}</span>
+      <div class="form-btn">
+        <button class="btn prim-btn clickable">
+          <span *ngIf="loading">Loading...</span>
+          <span *ngIf="!loading">Login</span>
+        </button>
+      </div>
+    </form>
+    <div class="auth-content-footer">
+      <p routerLink="/forgot-password" class="clickable">Forgot Password</p>
+    </div>
+    <button>Get</button>
+  </div>
+</div>
