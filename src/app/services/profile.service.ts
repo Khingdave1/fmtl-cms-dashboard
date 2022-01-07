@@ -29,7 +29,7 @@ export class ProfileService {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       })
     }
-    return this.http.get('http://first-marina-be.herokuapp.com/users/auth', httpOptions)
+    return this.http.get('https://first-marina-be.herokuapp.com/users/auth', httpOptions)
   }
 
 
