@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProfileService {
 
-  url = 'http://first-marina-be.herokuapp.com/users/appLogin'
+  url = 'https://first-marina-be.herokuapp.com/users/appLogin'
 
   constructor(
     private http: HttpClient
