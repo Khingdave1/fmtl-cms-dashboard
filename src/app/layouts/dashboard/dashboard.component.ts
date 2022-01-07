@@ -20,13 +20,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // Click Outside to close element
-    this.renderer.listen('window', 'click', (e: Event) => {
-      let x = !this.sideNav.nativeElement.contains(e.target)
-      let y = !this.menuBtn.nativeElement.contains(e.target)
-      if (x && y) {
-        this.hamClick = false;
-      }
-    });
+    // this.renderer.listen('window', 'click', (e: Event) => {
+    // let x = !this.sideNav.nativeElement.contains(e.target)
+    // let y = !this.menuBtn.nativeElement.contains(e.target)
+    // if (x && y) {
+    //   this.hamClick = false;
+    // }
+    // });
   }
 
   // Open Menu

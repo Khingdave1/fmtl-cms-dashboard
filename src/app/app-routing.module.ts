@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
@@ -9,6 +10,7 @@ import { PagesComponent } from './modules/pages/pages.component';
 import { SigninComponent } from './modules/signin/signin.component';
 
 const routes: Routes = [
+  // Auth
   {
     path: '',
     component: AuthComponent,
@@ -31,6 +33,8 @@ const routes: Routes = [
       }
     ]
   },
+
+  // Dashboard
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -41,7 +45,8 @@ const routes: Routes = [
         data: {
           title: 'Overview',
           description: 'Description Meta Tag Content'
-        }
+        },
+        canActivate: [AuthGuard]
       },
       {
         path: 'pages',
@@ -49,7 +54,8 @@ const routes: Routes = [
         data: {
           title: 'Pages',
           description: 'Description Meta Tag Content'
-        }
+        },
+        canActivate: [AuthGuard]
       },
       {
         path: 'menu',
@@ -57,7 +63,8 @@ const routes: Routes = [
         data: {
           title: 'Menu',
           description: 'Description Meta Tag Content'
-        }
+        },
+        canActivate: [AuthGuard]
       }
     ]
   }

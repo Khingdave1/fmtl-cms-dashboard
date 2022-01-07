@@ -54,7 +54,6 @@
   display: none;
 }
 .auth-content .message.show {
-  color: #ff2e00;
   display: block;
 }
 .auth-content form .form-btn .btn {
