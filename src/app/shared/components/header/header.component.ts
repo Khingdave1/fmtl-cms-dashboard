@@ -8,6 +8,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class HeaderComponent implements OnInit {
   userData: any
+  hamClick: any;
 
   constructor(private profileService: ProfileService) { }
 
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
     this.getUser()
 
   }
+  // Get User data
   getUser() {
     this.profileService.getUser().subscribe((res: any) => {
       this.userData = []
@@ -22,5 +24,14 @@ export class HeaderComponent implements OnInit {
 
       console.log(this.userData)
     })
+  }
+
+  // Open Menu
+  openMenu() {
+    this.hamClick = !this.hamClick
+  }
+  // Close Menu
+  closeMenu() {
+    this.hamClick = false
   }
 }

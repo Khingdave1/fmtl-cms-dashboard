@@ -32,10 +32,10 @@ nav ul li {
   font-weight: 500;
   line-height: 19.5px;
   position: relative;
-  transition: all 4s ease-in;
+  transition: all 0.4s ease-in;
 }
 nav ul li::after {
-  transition: all 4s ease-in;
+  transition: all 0.4s ease-in;
 }
 nav ul li:hover:after,
 nav ul li.active:after {
@@ -56,11 +56,11 @@ nav ul li.active {
   bottom: 0;
   width: 100%;
   padding: 1rem;
-  background-color: #ff2e00;
+  background-color: var(--danger-color);
   color: var(--white-color);
   justify-content: center;
 }
 .logout:hover {
-  background-color: #d12600;
+  background-color: var(--danger-hover-color);
 }
 /* Side Nav ends */

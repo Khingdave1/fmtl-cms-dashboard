@@ -1,7 +1,13 @@
 <div class="header-dash">
   <div class="left">
-    <h2>Howdy {{ userData?.first_name }}</h2>
-    <p>Glad to have you back. Make changes to your website here</p>
+    <!-- Hamburger menu -->
+    <div class="toggle-menu" (click)="openMenu()" [class.open-menu]="hamClick">
+      <span class="menu-bar"></span>
+    </div>
+    <div class="header">
+      <h2>Howdy {{ userData?.first_name }}</h2>
+      <p>Glad to have you back. Make changes to your website here</p>
+    </div>
   </div>
   <div class="right">
     <span class="notifi clickable">

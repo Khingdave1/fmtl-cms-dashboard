@@ -1,7 +1,7 @@
 <!-- Side Nav -->
 <!-- Logo -->
 <span routerLink="/" class="sidenav-logo clickable">
-  <img src="../../../../assets/img/logo.png" alt="" />
+  <img src="../../../../assets/img/logo.png" alt="image" />
 </span>
 <nav>
   <ul class="sidenav-list">
@@ -11,38 +11,49 @@
       routerLink="/dashboard"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <img src="../../../../assets/img/svg/dashboard.svg" alt="" />Dashboard
+      <img src="../../../../assets/img/svg/dashboard.svg" alt="image" />Overview
     </li>
     <li
       class="clickable"
       routerLinkActive="active"
       routerLink="/dashboard/pages"
     >
-      <img src="../../../../assets/img/svg/Group.svg" alt="" />Pages
+      <img src="../../../../assets/img/svg/Group.svg" alt="image" />Pages
     </li>
     <li
       class="clickable"
       routerLinkActive="active"
-      routerLink="/dashboard/menu"
+      routerLink="/dashboard/projects"
     >
-      <img src="../../../../assets/img/svg/menu.svg" alt="" />Menu
+      <img src="../../../../assets/img/svg/menu.svg" alt="image" />
+      Projects
     </li>
-    <li class="clickable" routerLinkActive="" routerLink="/dashboard">
-      <img src="../../../../assets/img/svg/tax form.svg" alt="" />
-      Contact Form
+    <li
+      class="clickable"
+      routerLinkActive="active"
+      routerLink="/dashboard/about"
+    >
+      <img src="../../../../assets/img/svg/tax_form.svg" alt="image" />
+      About
     </li>
-    <li class="clickable" routerLinkActive="" routerLink="/dashboard">
+    <li
+      class="clickable"
+      routerLinkActive="active"
+      routerLink="/dashboard/contact"
+    >
       <img
-        src="../../../../assets/img/svg/Folder Customization.svg"
-        alt=""
-      />Customization
+        src="../../../../assets/img/svg/Folder_Customization.svg"
+        alt="image"
+      />
+      Contact
     </li>
-    <li class="clickable" routerLinkActive="" routerLink="/dashboard">
-      <img src="../../../../assets/img/svg/Settings.svg" alt="" />Site Settings
-    </li>
+    <!-- <li class="clickable" routerLinkActive="" routerLink="/dashboard">
+      <img src="../../../../assets/img/svg/Settings.svg" alt="image" />Site
+      Settings
+    </li> -->
   </ul>
 </nav>
 <span class="logout clickable" (click)="logOut()">
-  <img src="../../../../assets/img/svg/Logout.svg" alt="" />
+  <img src="../../../../assets/img/svg/Logout.svg" alt="image" />
   Log Out
 </span>

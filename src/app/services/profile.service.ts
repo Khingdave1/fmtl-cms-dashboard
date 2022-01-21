@@ -6,7 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProfileService {
 
-  url = 'https://first-marina-be.herokuapp.com/users/appLogin'
+  postUrl = 'https://first-marina-be.herokuapp.com/users/appLogin'
+  getUrl = 'https://first-marina-be.herokuapp.com/users/auth'
 
   constructor(
     private http: HttpClient
@@ -18,7 +19,7 @@ export class ProfileService {
 
   // Sign In
   signIn(data: any) {
-    return this.http.post(this.url, data)
+    return this.http.post(this.postUrl, data)
   }
 
   // Get Users Data
@@ -29,7 +30,7 @@ export class ProfileService {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       })
     }
-    return this.http.get('https://first-marina-be.herokuapp.com/users/auth', httpOptions)
+    return this.http.get(this.getUrl, httpOptions)
   }
 
 

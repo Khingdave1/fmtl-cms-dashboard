@@ -44,6 +44,10 @@ main {
   width: 80%;
   padding: 1.5rem;
 }
+.main-body {
+  display: grid;
+  grid-gap: 2rem;
+}
 /*
 main .main-header .main-header-menu {
   visibility: hidden;
@@ -63,10 +67,6 @@ main .main-header #profile-image {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-} */
-/* main .main-body {
-  display: grid;
-  grid-gap: 2.5rem;
 } */
 /* Main ends */
 

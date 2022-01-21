@@ -4,9 +4,12 @@
   --secondary-color: #2f4858;
   --dark-blue-color: #0b2880;
   --white-color: #ffffff;
-  --grey-color: #989ba5;
-  --box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
-    0 1px 3px 1px rgb(60 64 67 / 15%);
+  --grey-color: hsl(226, 7%, 62%);
+  --danger-color: #ff2e00;
+  --danger-hover-color: #d12600;
+  --box-shadow: -5px 8px 28px -13px rgba(150, 146, 146, 1);
+  -webkit-box-shadow: -5px 8px 28px -13px rgba(150, 146, 146, 1);
+  -moz-box-shadow: -5px 8px 28px -13px rgba(150, 146, 146, 1);
   --border-radius: 5px;
 }
 /* Variables ends */
@@ -50,6 +53,9 @@ textarea::placeholder {
   font-family: "Poppins", sans-serif;
   color: var(--secondary-color);
 }
+textarea {
+  resize: none;
+}
 
 /* Buttons Starts */
 .btn {
@@ -61,6 +67,7 @@ textarea::placeholder {
   outline: none;
   transition: all 0.4s;
   border-radius: var(--border-radius);
+  background-color: transparent;
 }
 .prim-btn {
   color: var(--white-color);
@@ -92,6 +99,14 @@ textarea::placeholder {
   color: var(--dark-blue-color);
   border: 1px solid var(--dark-blue-color);
 }
+.danger-btn {
+  background-color: var(--danger-color);
+  color: var(--white-color);
+  border: 1px solid transparent;
+}
+.danger-btn:hover {
+  background-color: var(--danger-hover-color);
+}
 /* Buttons ends */
 
 .clickable {
@@ -100,6 +115,96 @@ textarea::placeholder {
 .uc {
   text-transform: uppercase;
 }
+.red-color {
+  color: var(--danger-color);
+}
+.green-color {
+  color: var(--primary-color);
+}
+.main-body-content {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+/* Section header, Table starts */
+section .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+section .header h2 {
+  font-weight: 500;
+}
+.table {
+  width: 100%;
+}
+@media only screen and (max-width: 977px) {
+  .table {
+    width: 200%;
+  }
+  .body {
+    width: 100%;
+    overflow-x: scroll;
+  }
+}
+.table .table-row {
+  display: grid;
+  grid-gap: 1rem;
+  align-items: flex-start;
+}
+.table .table-head {
+  padding: 0 2rem 1.5rem 2rem;
+}
+.table .table-list {
+  padding: 1.5rem 2rem;
+}
+.table-head .table-head-item {
+  color: var(--grey-color);
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  line-height: 21px;
+}
+.table-body {
+  display: grid;
+  grid-gap: 1.5rem;
+}
+.table-list {
+  background-color: var(--white-color);
+  border-radius: var(--border-radius);
+}
+.table-list .table-list-item {
+  font-weight: 600;
+  line-height: 24px;
+}
+.table-list .table-list-item.image img {
+  width: 100px;
+  height: 100px;
+  border: 5px solid rgba(30, 173, 93, 0.5);
+  border-radius: var(--border-radius);
+}
+.table-list .table-list-item.action {
+  display: flex;
+  align-items: center;
+}
+.table-list .table-list-item.action img {
+  width: 38px;
+  height: 38px;
+  position: relative;
+  margin-right: 0.2rem;
+  background-color: transparent;
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+}
+.table-list .table-list-item.action .reply:hover {
+  background-color: rgba(0, 0, 255, 0.26);
+}
+.table-list .table-list-item.action .delete:hover {
+  background-color: rgba(255, 0, 0, 0.26);
+}
+/* Section header, Table ends */
+
 /* Headings starts */
 /* h1 {
   font-size: 34px;
@@ -124,53 +229,3 @@ p {
   font-weight: 300;
 } */
 /* Headings ends */
-
-/* fm text starts */
-/* .fm-text {
-  position: relative;
-}
-.fm-text::after,
-.active::after {
-  content: "";
-  width: 1.5rem;
-  height: 0.4rem;
-  position: absolute;
-  border-radius: 5px;
-  bottom: -0.5rem;
-  left: 0;
-}
-
-.fm-sect-text {
-  color: var(--primary-color);
-}
-.fm-sect-text::after {
-  background-color: var(--primary-color);
-} */
-/* fm text ends */
-
-/* fm flex starts */
-/* .fm-flex-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.fm-flex-details {
-  flex-basis: 50%;
-}
-.fm-flex-details h3 {
-  margin-bottom: 1.5rem;
-}
-.fm-flex-img {
-  flex-basis: 40%;
-}
-.fm-flex-img img {
-  width: 100%;
-  height: auto;
-}
-@media only screen and (max-width: 870px) {
-  .fm-flex-content {
-    display: grid;
-    grid-gap: 2rem;
-  }
-} */
-/* fm flex ends */
