@@ -1,0 +1,119 @@
+/* Modal starts */
+.modal-area {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #f2f5f6a4;
+  display: flex;
+  z-index: 150;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 500ms ease-in-out;
+  overflow-y: scroll;
+}
+.modal-area.show-modal {
+  opacity: 1;
+  visibility: visible;
+}
+.modal {
+  background-color: var(--white-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin: auto;
+  width: 30%;
+  box-shadow: var(--box-shadow);
+}
+@media only screen and (max-width: 870px) {
+  .modal {
+    width: 90%;
+  }
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.modal-head .close-icon {
+  width: 30px;
+  height: 30px;
+}
+form {
+  display: grid;
+  grid-gap: 1rem;
+}
+.form-field {
+  background-color: #e5e5e5;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+}
+.form-field:hover {
+  border: 1px solid var(--dark-blue-color);
+}
+form input,
+form textarea {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.upload-img .form-field {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.upload-img .selected-img {
+  margin-top: 0.5rem;
+}
+.message {
+  display: none;
+}
+.message.show {
+  display: block;
+}
+/* Modal ends */
+
+/* Delete Modal starts */
+.modal-head {
+  margin-bottom: 1rem;
+}
+.modal-body-btns {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+.modal-body-btns .btn {
+  margin-left: 1rem;
+}
+.modal-body-btns .tert-btn:hover {
+  color: var(--dark-blue-color);
+}
+/* Delete Modal ends */
+
+/* Message popup starts */
+.alert-popup {
+  position: fixed;
+  right: 1rem;
+  bottom: 2rem;
+  z-index: 150;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 500ms ease-in-out;
+}
+.alert-popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+.alert-popup-content {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
+/* Message popup ends */

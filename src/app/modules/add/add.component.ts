@@ -1,30 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { ProjectsService } from 'src/app/services/projects.service';
+import { PagesService } from 'src/app/services/pages.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  selector: 'app-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class AddComponent implements OnInit {
+
+  @Input() postFinanceUrl: string;
+  @Output() addModal: EventEmitter<any> = new EventEmitter();
 
   loading: boolean = false;
   errorMessage: string = "";
   showError: boolean = false;
-  alertPopupMessage: string = "";
   selectedFile: File;
   selectedFileName: string = "";
-  modal: any;
-  deleteModal: any;
-  editModal: any;
   form: FormGroup;
-  editForm: FormGroup;
-  currentItem: any;
   alertPopup: any;
+  alertPopupMessage: string = "";
 
-  constructor(private projectService: ProjectsService, private formBuilder: FormBuilder) {
-
+  constructor(private pagesService: PagesService, private formBuilder: FormBuilder) {
     // Form
     this.form = this.formBuilder.group({
       name: [''],
@@ -36,6 +33,7 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   // File selection
   onFileSelect(event: any) {
     const file = <File>event.target.files[0]
@@ -46,6 +44,7 @@ export class ProjectsComponent implements OnInit {
     });
     this.form.get('images')!.updateValueAndValidity()
   }
+
 
   // Post Data
   async addFinance() {
@@ -59,7 +58,7 @@ export class ProjectsComponent implements OnInit {
     formData.append("url", 'http//micheal.com');
 
     try {
-      const result = await this.projectService.addProjectPage(formData)
+      const result = await this.pagesService.addFinancePage(formData, this.postFinanceUrl)
       //  Show message
       this.alertPopupMessage = result.message
 
@@ -84,6 +83,11 @@ export class ProjectsComponent implements OnInit {
       // Set loading to false
       this.loading = false
     }
+  }
+
+  // Close Add Modal
+  closeAddModal() {
+    this.addModal.emit();
   }
 
 }

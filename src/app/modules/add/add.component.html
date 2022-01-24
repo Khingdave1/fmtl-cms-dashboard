@@ -1,0 +1,54 @@
+<!-- Modal -->
+<div class="modal-head">
+  <h2>Add Finance</h2>
+  <img
+    src="../../../assets/img/svg/close.svg"
+    alt="image"
+    class="close-icon clickable"
+    (click)="closeAddModal()"
+  />
+</div>
+<!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
+<form [formGroup]="form" (ngSubmit)="addFinance()">
+  <div class="form-field">
+    <input
+      type="text"
+      name="name"
+      placeholder="Title"
+      formControlName="name"
+      autocomplete="name"
+    />
+  </div>
+  <div class="form-field">
+    <textarea
+      placeholder="Description"
+      cols="30"
+      rows="4"
+      formControlName="description"
+    ></textarea>
+  </div>
+  <input
+    type="file"
+    style="display: none"
+    (change)="onFileSelect($event)"
+    #productImage
+  />
+  <!-- The input is set to display none. so this will show instead -->
+  <span (click)="productImage.click()" class="upload-img">
+    <div class="form-field">
+      Upload Image
+      <img src="../../../assets/img/svg/upload.svg" alt="" />
+    </div>
+    <h5 class="selected-img">{{ selectedFileName }}</h5>
+  </span>
+
+  <!-- Error -->
+  <span class="message red-color" id="message" [class.show]="showError">{{
+    errorMessage
+  }}</span>
+
+  <button class="btn dark-blue-btn clickable">
+    <span *ngIf="loading">Saving...</span>
+    <span *ngIf="!loading">Save</span>
+  </button>
+</form>

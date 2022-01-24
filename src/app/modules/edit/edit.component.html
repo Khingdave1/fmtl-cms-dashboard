@@ -1,0 +1,57 @@
+<div class="modal-head">
+  <h2>Edit Finance</h2>
+  <img
+    src="../../../assets/img/svg/close.svg"
+    alt="image"
+    class="close-icon clickable"
+    (click)="closeEditModal()"
+  />
+</div>
+<!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
+<form [formGroup]="editForm" (ngSubmit)="editFinance(currentItem._id)">
+  <div class="form-field">
+    <input
+      type="text"
+      name="name"
+      placeholder="Title"
+      formControlName="name"
+      autocomplete="name"
+      [placeholder]="currentItem?.name"
+    />
+    <!-- [value]="currentItem?.name" -->
+  </div>
+  <div class="form-field">
+    <textarea
+      placeholder="Description"
+      cols="30"
+      rows="4"
+      formControlName="description"
+      [placeholder]="currentItem?.description"
+    ></textarea>
+    <!-- [(ngModel)]="currentItem2.description" -->
+  </div>
+  <input
+    type="file"
+    style="display: none"
+    (change)="onFileSelect($event)"
+    #productImage
+  />
+  <!-- The input is set to display none. so this will show instead -->
+  <span (click)="productImage.click()" class="upload-img">
+    <div class="form-field">
+      Upload Image
+      <img src="../../../assets/img/svg/upload.svg" alt="" />
+    </div>
+    <h5 class="selected-img">{{ selectedFileName }}</h5>
+  </span>
+
+  <!-- Error -->
+  <span class="message red-color" id="message" [class.show]="showError">{{
+    errorMessage
+  }}</span>
+
+  <button class="btn dark-blue-btn clickable">
+    <span *ngIf="loading">Saving...</span>
+    <span *ngIf="!loading">Save</span>
+  </button>
+</form>

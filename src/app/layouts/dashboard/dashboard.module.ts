@@ -9,6 +9,10 @@ import { ProjectsComponent } from 'src/app/modules/projects/projects.component';
 import { ContactComponent } from 'src/app/modules/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from 'src/app/modules/about/about.component';
+import { AddComponent } from 'src/app/modules/add/add.component';
+import { EditComponent } from 'src/app/modules/edit/edit.component';
+import { ReplyComponent } from 'src/app/modules/reply/reply.component';
+import { DeleteComponent } from 'src/app/modules/delete/delete.component';
 
 
 
@@ -19,7 +23,11 @@ import { AboutComponent } from 'src/app/modules/about/about.component';
     PagesComponent,
     ProjectsComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    AddComponent,
+    EditComponent,
+    ReplyComponent,
+    DeleteComponent
   ],
   imports: [
     CommonModule,

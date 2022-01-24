@@ -3,7 +3,9 @@
     <div class="header">
       <h2>Pages</h2>
       <span>
-        <button class="btn dark-blue-btn" (click)="openModal()">Add New</button>
+        <button class="btn dark-blue-btn" (click)="openAddModal()">
+          Add New
+        </button>
       </span>
     </div>
     <div class="body">
@@ -57,150 +59,37 @@
 
 <div class="modal-area" [class.show-modal]="deleteModal">
   <div class="modal delete-modal">
-    <div class="modal-head">
-      <h2>Delete Item</h2>
-    </div>
-    <div class="modal-body">
-      <p>
-        Are you sure you want to permanently delete this
-        <strong>{{ currentItem?.name }}</strong
-        >?
-      </p>
-      <div class="modal-body-btns">
-        <button class="btn tert-btn" (click)="deleteModal = false">
-          Cancel
-        </button>
-        <button class="btn danger-btn" (click)="deleteFinance(currentItem._id)">
-          Delete
-        </button>
-      </div>
+    <app-delete
+      [deleteFinanceUrl]="deleteFinanceUrl"
+      [currentItem]="currentItem"
+      (deleteModal)="closeDeleteModal()"
+    ></app-delete>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-area" [class.show-modal]="addModal">
+    <div class="modal">
+      <app-add
+        [postFinanceUrl]="postFinanceUrl"
+        (addModal)="closeAddModal()"
+      ></app-add>
     </div>
   </div>
-</div>
 
-<!-- Modal -->
-<div class="modal-area" [class.show-modal]="modal">
-  <div class="modal">
-    <div class="modal-head">
-      <h2>Add Finance</h2>
-      <img
-        src="../../../assets/img/svg/close.svg"
-        alt="image"
-        class="close-icon clickable"
-        (click)="modal = false"
-      />
+  <!-- Edit Modal -->
+  <div class="modal-area" [class.show-modal]="editModal">
+    <div class="modal">
+      <app-edit
+        [updateFinanceUrl]="updateFinanceUrl"
+        [currentItem]="currentItem"
+        (editModal)="closeEditModal()"
+      ></app-edit>
     </div>
-    <!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
-    <form [formGroup]="form" (ngSubmit)="addFinance()">
-      <div class="form-field">
-        <input
-          type="text"
-          name="name"
-          placeholder="Title"
-          formControlName="name"
-          autocomplete="name"
-        />
-      </div>
-      <div class="form-field">
-        <textarea
-          placeholder="Description"
-          cols="30"
-          rows="4"
-          formControlName="description"
-        ></textarea>
-      </div>
-      <input
-        type="file"
-        style="display: none"
-        (change)="onFileSelect($event)"
-        #productImage
-      />
-      <!-- The input is set to display none. so this will show instead -->
-      <span (click)="productImage.click()" class="upload-img">
-        <div class="form-field">
-          Upload Image
-          <img src="../../../assets/img/svg/upload.svg" alt="" />
-        </div>
-        <h5 class="selected-img">{{ selectedFileName }}</h5>
-      </span>
-
-      <!-- Error -->
-      <span class="message" id="message" [class.show]="showError">{{
-        errorMessage
-      }}</span>
-
-      <button class="btn dark-blue-btn clickable">
-        <span *ngIf="loading">Saving...</span>
-        <span *ngIf="!loading">Save</span>
-      </button>
-    </form>
   </div>
-</div>
 
-<!-- Edit Modal -->
-<div class="modal-area" [class.show-modal]="editModal">
-  <div class="modal">
-    <div class="modal-head">
-      <h2>Edit Finance</h2>
-      <img
-        src="../../../assets/img/svg/close.svg"
-        alt="image"
-        class="close-icon clickable"
-        (click)="editModal = false"
-      />
+  <div class="alert-popup" [class.show]="alertPopup">
+    <div class="alert-popup-content">
+      <p>{{ alertPopupMessage }}</p>
     </div>
-    <!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
-    <form [formGroup]="form" (ngSubmit)="editFinance(currentItem._id)">
-      <div class="form-field">
-        <input
-          type="text"
-          name="name"
-          placeholder="Title"
-          formControlName="name"
-          autocomplete="name"
-          [value]="currentItem?.name"
-        />
-      </div>
-      <div class="form-field">
-        <textarea
-          placeholder="Description"
-          cols="30"
-          rows="4"
-          formControlName="description"
-          [value]="currentItem?.description"
-        ></textarea>
-        <!-- [(ngModel)]="currentItem2.description" -->
-      </div>
-      <input
-        type="file"
-        style="display: none"
-        (change)="onFileSelect($event)"
-        #productImage
-      />
-      <!-- The input is set to display none. so this will show instead -->
-      <span (click)="productImage.click()" class="upload-img">
-        <div class="form-field">
-          Upload Image
-          <img src="../../../assets/img/svg/upload.svg" alt="" />
-        </div>
-        <h5 class="selected-img">{{ selectedFileName }}</h5>
-      </span>
-
-      <!-- Error -->
-      <span class="message" id="message" [class.show]="showError">{{
-        errorMessage
-      }}</span>
-
-      <button class="btn dark-blue-btn clickable">
-        <span *ngIf="loading">Saving...</span>
-        <span *ngIf="!loading">Save</span>
-      </button>
-    </form>
-  </div>
-</div>
-
-<div class="alert-popup" [class.show]="alertPopup">
-  <div class="alert-popup-content">
-    <p>{{ alertPopupMessage }}</p>
   </div>
 </div>

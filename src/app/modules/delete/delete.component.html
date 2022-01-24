@@ -1,0 +1,16 @@
+<div class="modal-head">
+  <h2>Delete Item</h2>
+</div>
+<div class="modal-body">
+  <p>
+    Are you sure you want to permanently delete this
+    <strong>{{ currentItem?.name }}</strong
+    >?
+  </p>
+  <div class="modal-body-btns">
+    <button class="btn tert-btn" (click)="closeDeleteModal()">Cancel</button>
+    <button class="btn danger-btn" (click)="deleteFinance(currentItem._id)">
+      Delete
+    </button>
+  </div>
+</div>
