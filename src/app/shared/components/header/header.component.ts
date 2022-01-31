@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -7,8 +7,8 @@ import { ProfileService } from 'src/app/services/profile.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  userData: any
-  hamClick: any;
+  userData: any;
+  @Output() hamClick: EventEmitter<any> = new EventEmitter();
 
   constructor(private profileService: ProfileService) { }
 
@@ -21,17 +21,15 @@ export class HeaderComponent implements OnInit {
     this.profileService.getUser().subscribe((res: any) => {
       this.userData = []
       this.userData = res.data.user
-
-      console.log(this.userData)
     })
   }
 
   // Open Menu
   openMenu() {
-    this.hamClick = !this.hamClick
+    this.hamClick.emit()
   }
   // Close Menu
-  closeMenu() {
-    this.hamClick = false
-  }
+  // closeMenu() {
+  //   this.hamClick = false
+  // }
 }

@@ -9,8 +9,9 @@ import { PagesService } from 'src/app/services/pages.service';
 })
 export class AddComponent implements OnInit {
 
-  @Input() postFinanceUrl: string;
+  @Input() postUrl: string;
   @Output() addModal: EventEmitter<any> = new EventEmitter();
+  @Input() modalHeaderName: string;
 
   loading: boolean = false;
   errorMessage: string = "";
@@ -47,7 +48,7 @@ export class AddComponent implements OnInit {
 
 
   // Post Data
-  async addFinance() {
+  async addItem() {
     // Start loading
     this.loading = true
 
@@ -58,16 +59,14 @@ export class AddComponent implements OnInit {
     formData.append("url", 'http//micheal.com');
 
     try {
-      const result = await this.pagesService.addFinancePage(formData, this.postFinanceUrl)
-      //  Show message
-      this.alertPopupMessage = result.message
-
-      // Display message
-      this.alertPopup = true
+      const result = await this.pagesService.addPage(formData, this.postUrl)
 
       // Set loading to false
       this.loading = false
 
+      // Show alert message
+      this.alertPopupMessage = result.message
+      this.alertPopup = true
 
       // Reload the page
       window.location.reload();

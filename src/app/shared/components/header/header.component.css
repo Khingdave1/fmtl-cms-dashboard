@@ -35,16 +35,16 @@
 .toggle-menu {
   cursor: pointer;
   margin-top: -6px;
-  /* display: none; */
+  display: none;
 }
 .toggle-menu .menu-bar {
   width: 1.5rem;
   height: 2px;
   background-color: var(--secondary-color);
-  display: inline-block;
   position: relative;
+  display: inline-block;
   transform: translateX(-1rem);
-  transition: background-color 0.5s;
+  transition: all 0.5s;
 }
 .toggle-menu .menu-bar::before,
 .toggle-menu .menu-bar::after {
@@ -62,15 +62,23 @@
   top: 0.6rem;
 }
 .open-menu .menu-bar {
-  background-color: transparent !important;
+  background-color: transparent;
+}
+.open-menu .menu-bar::before,
+.open-menu .menu-bar::after {
+  background-color: var(--secondary-color);
 }
 .open-menu .menu-bar::before {
   top: 0 !important;
   transform: rotate(135deg);
-  background-color: var(--secondary-color) !important;
 }
 .open-menu .menu-bar::after {
   top: 0 !important;
   transform: rotate(-135deg);
-  background-color: var(--secondary-color) !important;
+}
+
+@media only screen and (max-width: 755px) {
+  .toggle-menu {
+    display: block;
+  }
 }

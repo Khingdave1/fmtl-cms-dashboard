@@ -1,0 +1,102 @@
+<section class="finance">
+  <div class="header">
+    <h2>Finance</h2>
+    <span>
+      <button
+        class="btn dark-blue-btn"
+        (click)="openAddModal((modalHeaderName = 'Finance'))"
+      >
+        Add New
+      </button>
+    </span>
+  </div>
+  <div class="body">
+    <div class="table">
+      <div class="table-head table-row">
+        <span class="table-head-item item">Name</span>
+        <span class="table-head-item item">Description</span>
+        <span class="table-head-item item">Image</span>
+        <span class="table-head-item item">Actions</span>
+      </div>
+      <div class="table-body">
+        <ng-container *ngIf="finance?.length > 0; else noItems">
+          <div class="table-list table-row" *ngFor="let i of finance">
+            <span class="table-list-item item image">{{ i.name }}</span>
+            <span class="table-list-item item green-color">{{
+              i.description
+            }}</span>
+            <span
+              class="table-list-item item image"
+              *ngFor="let childItem of i.images"
+              ><img [src]="childItem.url" alt="image"
+            /></span>
+            <span class="table-list-item item action">
+              <img
+                src="../../../assets/img/svg/edit.svg"
+                alt="image"
+                class="clickable edit"
+                title="Reply"
+                (click)="openEditModal(i, (modalHeaderName = 'Finance'))"
+              />
+              <img
+                src="../../../assets/img/svg/Delete.svg"
+                alt="image"
+                class="clickable delete"
+                title="Reply"
+                (click)="openDeleteModal(i)"
+              />
+            </span>
+          </div>
+        </ng-container>
+
+        <!-- If the Product List is empty -->
+        <ng-template #noItems>
+          <p style="text-align: center; font-weight: 500">Empty list</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Add Modal -->
+<div class="modal-area" [class.show-modal]="addModal || editModal">
+  <div class="modal">
+    <app-add
+      *ngIf="addModal"
+      [postUrl]="postFinanceUrl"
+      [modalHeaderName]="modalHeaderName"
+      (addModal)="closeAddModal()"
+    ></app-add>
+    <app-edit
+      *ngIf="editModal"
+      [updateUrl]="updateFinanceUrl"
+      [currentItem]="currentItem"
+      [modalHeaderName]="modalHeaderName"
+      (editModal)="closeEditModal()"
+    ></app-edit>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<!-- <div class="modal-area" [class.show-modal]="editModal">
+  <div class="modal">
+    <app-edit
+      [updateUrl]="updateFinanceUrl"
+      [currentItem]="currentItem"
+      [modalHeaderName]="modalHeaderName"
+      (editModal)="closeEditModal()"
+    ></app-edit>
+  </div>
+</div> -->
+
+<!-- Delete Modal -->
+<div class="modal-area" [class.show-modal]="deleteModal">
+  <div class="modal delete-modal">
+    <app-delete
+      *ngIf="deleteModal"
+      [deleteUrl]="deleteFinanceUrl"
+      [currentItem]="currentItem"
+      (deleteModal)="closeDeleteModal()"
+    ></app-delete>
+  </div>
+</div>

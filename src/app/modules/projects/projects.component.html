@@ -3,57 +3,88 @@
     <div class="header">
       <h2>Projects</h2>
       <span>
-        <button class="btn dark-blue-btn">Add New</button>
+        <button
+          class="btn dark-blue-btn"
+          (click)="openAddModal((modalHeaderName = 'Project'))"
+        >
+          Add New
+        </button>
       </span>
     </div>
     <div class="body">
       <div class="table">
         <div class="table-head table-row">
-          <span class="table-head-item item">Image</span>
           <span class="table-head-item item">Name</span>
           <span class="table-head-item item">Details</span>
+          <span class="table-head-item item">Image</span>
           <span class="table-head-item item">action</span>
         </div>
         <div class="table-body">
-          <div class="table-list table-row">
-            <span class="table-list-item item image"
-              ><img src="../../../assets/img/svg/avatar.svg" alt=""
-            /></span>
-            <span class="table-list-item item">Project 1</span>
-            <span class="table-list-item item"
-              >We have several products in our investment portfolio such as
-              Money Market instruments, Investment in Blue Chip companies and
-              other viable products. We also operate in the Venture Capital
-              sphere.</span
-            >
-            <span class="table-list-item item action">
-              <img
-                src="../../../assets/img/svg/Delete.svg"
-                alt="image"
-                class="clickable edit"
-                title="Edit"
-              />
-              <img
-                src="../../../assets/img/svg/Delete.svg"
-                alt="image"
-                class="clickable delete"
-                title="Delete"
-              />
-            </span>
-          </div>
-          <div class="table-list table-row">
-            <span class="table-list-item item">Home</span>
-            <span class="table-list-item item">November 03, 2021</span>
-            <span class="table-list-item item">https://www.fmtl.com</span>
-            <span class="table-list-item item"
-              ><img
-                src="../../../assets/img/svg/Delete.svg"
-                alt="image"
-                class="clickable"
-            /></span>
-          </div>
+          <ng-container *ngIf="project?.length > 0; else noItems">
+            <div class="table-list table-row" *ngFor="let i of project">
+              <span class="table-list-item item">{{ i.name }}</span>
+              <span class="table-list-item item">{{ i.description }}</span>
+              <span
+                class="table-list-item item image"
+                *ngFor="let childItem of i.images"
+                ><img [src]="childItem.url" alt=""
+              /></span>
+              <span class="table-list-item item action">
+                <img
+                  src="../../../assets/img/svg/edit.svg"
+                  alt="image"
+                  class="clickable edit"
+                  title="Reply"
+                  (click)="openEditModal(i, (modalHeaderName = 'Project'))"
+                />
+                <img
+                  src="../../../assets/img/svg/Delete.svg"
+                  alt="image"
+                  class="clickable delete"
+                  title="Reply"
+                  (click)="openDeleteModal(i)"
+                />
+              </span>
+            </div>
+          </ng-container>
+
+          <!-- If the Product List is empty -->
+          <ng-template #noItems>
+            <p style="text-align: center; font-weight: 500">Empty list</p>
+          </ng-template>
         </div>
       </div>
     </div>
   </section>
+</div>
+
+<!-- Add Modal -->
+<div class="modal-area" [class.show-modal]="addModal || editModal">
+  <div class="modal">
+    <app-add
+      *ngIf="addModal"
+      [postUrl]="postUrl"
+      [modalHeaderName]="modalHeaderName"
+      (addModal)="closeAddModal()"
+    ></app-add>
+    <app-edit
+      *ngIf="editModal"
+      [updateUrl]="updateProjectUrl"
+      [currentItem]="currentItem"
+      [modalHeaderName]="modalHeaderName"
+      (editModal)="closeEditModal()"
+    ></app-edit>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal-area" [class.show-modal]="deleteModal">
+  <div class="modal delete-modal">
+    <app-delete
+      *ngIf="deleteModal"
+      [deleteUrl]="deleteProjectUrl"
+      [currentItem]="currentItem"
+      (deleteModal)="closeDeleteModal()"
+    ></app-delete>
+  </div>
 </div>

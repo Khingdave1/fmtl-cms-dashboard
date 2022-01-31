@@ -7,10 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class PagesService {
 
   httpOptions: any;
-  getUrl = 'https://first-marina-be.herokuapp.com/pages'
-  // postFinanceUrl = 'https://first-marina-be.herokuapp.com/pages/add/finance'
-  // updateFinanceUrl = 'https://first-marina-be.herokuapp.com/pages/update/finance'
-  // deleteFinanceUrl = 'https://first-marina-be.herokuapp.com/pages/delete/finance'
+  getPagesUrl = 'https://first-marina-be.herokuapp.com/pages';
+  getTeamUrl = 'https://first-marina-be.herokuapp.com/about/team';
   token = localStorage.getItem('token')
 
   constructor(private http: HttpClient) {
@@ -24,17 +22,20 @@ export class PagesService {
 
   // Get All Pages
   getAllPages() {
-    return this.http.get(this.getUrl, this.httpOptions)
+    return this.http.get(this.getPagesUrl, this.httpOptions)
+  }
+  // Get all Teams
+  getAllTeam() {
+    return this.http.get(this.getTeamUrl, this.httpOptions)
   }
 
   // Get Finance Page
-  async addFinancePage(data: any, postFinanceUrl: any) {
+  async addPage(data: any, postUrl: any) {
     try {
-      const r = await fetch(postFinanceUrl, {
+      const r = await fetch(postUrl, {
         method: "POST",
         headers: {
           Authorization: "Bearer " + this.token,
-          // "Content-Type": "multipart/form-data",
         },
         body: data,
       });
@@ -50,9 +51,10 @@ export class PagesService {
   }
 
   // Update Finance page
-  updateFinancePage(updateFinanceUrl: any, dataId: any, payload: any) {
-    return this.http.put(updateFinanceUrl + "/" + dataId, payload, this.httpOptions)
+  updatePage(updateUrl: any, dataId: any, payload: any) {
+    return this.http.put(updateUrl + "/" + dataId, payload, this.httpOptions)
   }
+
   // Delete Finance page
   deleteFinancePage(deleteFinanceUrl: any, dataId: any) {
     return this.http.delete(deleteFinanceUrl + "/" + dataId, this.httpOptions)

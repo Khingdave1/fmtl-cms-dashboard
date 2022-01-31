@@ -1,5 +1,5 @@
 <div class="modal-head">
-  <h2>Edit Finance</h2>
+  <h2>Edit {{ modalHeaderName }}</h2>
   <img
     src="../../../assets/img/svg/close.svg"
     alt="image"
@@ -8,7 +8,7 @@
   />
 </div>
 <!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
-<form [formGroup]="editForm" (ngSubmit)="editFinance(currentItem._id)">
+<form [formGroup]="editForm" (ngSubmit)="editItem(currentItem._id)">
   <div class="form-field">
     <input
       type="text"
@@ -16,9 +16,8 @@
       placeholder="Title"
       formControlName="name"
       autocomplete="name"
-      [placeholder]="currentItem?.name"
+      [(ngModel)]="currentItem.name"
     />
-    <!-- [value]="currentItem?.name" -->
   </div>
   <div class="form-field">
     <textarea
@@ -26,9 +25,8 @@
       cols="30"
       rows="4"
       formControlName="description"
-      [placeholder]="currentItem?.description"
+      [(ngModel)]="currentItem.description"
     ></textarea>
-    <!-- [(ngModel)]="currentItem2.description" -->
   </div>
   <input
     type="file"
@@ -55,3 +53,9 @@
     <span *ngIf="!loading">Save</span>
   </button>
 </form>
+
+<!-- Alert pop up -->
+<app-alert-popup
+  [alertPopupMessage]="alertPopupMessage"
+  [alertPopup]="alertPopup"
+></app-alert-popup>

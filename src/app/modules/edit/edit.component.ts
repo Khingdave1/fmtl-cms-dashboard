@@ -9,8 +9,9 @@ import { PagesService } from 'src/app/services/pages.service';
 })
 export class EditComponent implements OnInit {
 
-  @Input() updateFinanceUrl: string;
+  @Input() updateUrl: string;
   @Input() currentItem: any;
+  @Input() modalHeaderName: string;
   @Output() editModal: EventEmitter<any> = new EventEmitter();
 
   loading: boolean = false;
@@ -46,7 +47,7 @@ export class EditComponent implements OnInit {
   }
 
   // Edit Finance
-  editFinance(dataId: any) {
+  editItem(dataId: any) {
     // Set lloading to true
     this.loading = true
 
@@ -56,21 +57,19 @@ export class EditComponent implements OnInit {
     }
 
     console.log(data)
-    this.pagesService.updateFinancePage(this.updateFinanceUrl, dataId, data).subscribe((res: any) => {
+    this.pagesService.updatePage(this.updateUrl, dataId, data).subscribe((res: any) => {
       console.log(res)
-
-      //  Show message
-      this.alertPopupMessage = res.message
-
-      // Display message
-      this.alertPopup = true
 
       // Set loading to false
       this.loading = false
 
+      // Show alert message
+      this.alertPopupMessage = res.message
+      this.alertPopup = true
 
       // Reload the page
       window.location.reload();
+
     }, ((error: any) => {
       console.log(error)
     }))

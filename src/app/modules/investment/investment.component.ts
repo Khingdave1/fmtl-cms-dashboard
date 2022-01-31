@@ -2,23 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { PagesService } from 'src/app/services/pages.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  selector: 'app-investment',
+  templateUrl: './investment.component.html',
+  styleUrls: ['./investment.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class InvestmentComponent implements OnInit {
 
-  project: any;
-  postUrl: string = 'https://first-marina-be.herokuapp.com/pages/add/project';
-  updateProjectUrl: string = 'https://first-marina-be.herokuapp.com/pages/update/project';
-  deleteProjectUrl: string = 'https://first-marina-be.herokuapp.com/pages/delete/project';
+  postInvestmentUrl: string = 'https://first-marina-be.herokuapp.com/pages/add/investment';
+  updateInvestmentUrl: string = 'https://first-marina-be.herokuapp.com/pages/update/investment';
+  deleteInvestmentUrl: string = 'https://first-marina-be.herokuapp.com/pages/delete/investment';
 
+  investment: any;
   addModal: boolean = false;
   deleteModal: boolean = false;
   editModal: boolean = false;
   currentItem: any;
   modalHeaderName: string = "";
-
 
   constructor(private pagesService: PagesService) { }
 
@@ -31,14 +30,15 @@ export class ProjectsComponent implements OnInit {
   getData() {
     // Send users data
     this.pagesService.getAllPages().subscribe((res: any) => {
-      this.project = res.data.project
+      this.investment = res.data.investment
     }, ((error: any) => {
       console.log(error)
     }))
   }
+
   // Open Add Modal
   openAddModal(title: any) {
-    this.addModal = true
+    this.addModal = !this.addModal
     // Set Modal name
     this.modalHeaderName = title
   }

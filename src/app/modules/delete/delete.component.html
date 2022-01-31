@@ -9,8 +9,14 @@
   </p>
   <div class="modal-body-btns">
     <button class="btn tert-btn" (click)="closeDeleteModal()">Cancel</button>
-    <button class="btn danger-btn" (click)="deleteFinance(currentItem._id)">
+    <button class="btn danger-btn" (click)="deleteItem(currentItem._id)">
       Delete
     </button>
   </div>
 </div>
+
+<!-- Alert pop up -->
+<app-alert-popup
+  [alertPopupMessage]="alertPopupMessage"
+  [alertPopup]="alertPopup"
+></app-alert-popup>

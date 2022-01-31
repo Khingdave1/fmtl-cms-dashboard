@@ -197,6 +197,7 @@ section .header h2 {
   padding: 0.5rem;
   transition: all 0.2s ease;
 }
+.table-list .table-list-item.action .edit:hover,
 .table-list .table-list-item.action .reply:hover {
   background-color: rgba(0, 0, 255, 0.26);
 }

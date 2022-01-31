@@ -9,10 +9,10 @@
   grid-column: 2 / 4;
 }
 .contact-data .item:nth-child(3) {
-  grid-column: 4 / 5;
+  grid-column: 4 / 7;
 }
 .contact-data .item:nth-child(4) {
-  grid-column: 5 / 8;
+  grid-column: 7 / 8;
 }
 .contact-data .item:nth-child(5) {
   grid-column: 8 / 9;

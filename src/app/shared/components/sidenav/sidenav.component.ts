@@ -15,7 +15,6 @@ export class SidenavComponent implements OnInit {
 
   // Log the user out
   logOut() {
-    // this.firebaseService.signout()
     // Return to Home page
     localStorage.removeItem('token')
 

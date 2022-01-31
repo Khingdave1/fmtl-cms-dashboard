@@ -8,10 +8,9 @@ import { PagesService } from 'src/app/services/pages.service';
 })
 export class DeleteComponent implements OnInit {
 
-  @Input() deleteFinanceUrl: string;
+  @Input() deleteUrl: string;
   @Input() currentItem: any;
   @Output() deleteModal: EventEmitter<any> = new EventEmitter();
-
 
   alertPopupMessage: string = "";
   alertPopup: any;
@@ -22,17 +21,17 @@ export class DeleteComponent implements OnInit {
   }
 
   // Delete Finance
-  deleteFinance(dataId: any) {
-    this.pagesService.deleteFinancePage(this.deleteFinanceUrl, dataId).subscribe((res: any) => {
+  deleteItem(dataId: any) {
+    this.pagesService.deleteFinancePage(this.deleteUrl, dataId).subscribe((res: any) => {
       console.log(res.message)
 
-      // Reload the page
-      window.location.reload();
-
+      // Show alert message
       this.alertPopupMessage = res.message
 
       this.alertPopup = true
 
+      // Reload the page
+      window.location.reload();
 
       // Set Timeout
       setTimeout(() => {

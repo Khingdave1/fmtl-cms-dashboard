@@ -7,8 +7,8 @@
   </aside>
 
   <!-- Main -->
-  <main>
-    <app-header></app-header>
+  <main [class.show-menu]="hamClick">
+    <app-header (hamClick)="openMenu()"></app-header>
     <div class="main-body">
       <!-- <app-overview></app-overview> -->
       <router-outlet></router-outlet>

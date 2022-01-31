@@ -13,6 +13,9 @@ import { AddComponent } from 'src/app/modules/add/add.component';
 import { EditComponent } from 'src/app/modules/edit/edit.component';
 import { ReplyComponent } from 'src/app/modules/reply/reply.component';
 import { DeleteComponent } from 'src/app/modules/delete/delete.component';
+import { AlertPopupComponent } from 'src/app/modules/alert-popup/alert-popup.component';
+import { InvestmentComponent } from 'src/app/modules/investment/investment.component';
+import { FinanceComponent } from 'src/app/modules/finance/finance.component';
 
 
 
@@ -22,12 +25,15 @@ import { DeleteComponent } from 'src/app/modules/delete/delete.component';
     OverviewComponent,
     PagesComponent,
     ProjectsComponent,
+    InvestmentComponent,
+    FinanceComponent,
     AboutComponent,
     ContactComponent,
     AddComponent,
     EditComponent,
     ReplyComponent,
-    DeleteComponent
+    DeleteComponent,
+    AlertPopupComponent
   ],
   imports: [
     CommonModule,

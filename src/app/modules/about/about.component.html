@@ -1,1 +1,156 @@
-<p>about works!</p>
+<div class="main-body-content">
+  <section class="team">
+    <div class="header">
+      <h2>Board of Directors</h2>
+      <span>
+        <button
+          class="btn dark-blue-btn"
+          (click)="openAddModal((modalHeaderName = 'Board'))"
+        >
+          Add New
+        </button>
+      </span>
+    </div>
+    <div class="body">
+      <div class="table">
+        <div class="table-head table-row">
+          <span class="table-head-item item">Name</span>
+          <span class="table-head-item item">Role</span>
+          <span class="table-head-item item">Image</span>
+          <span class="table-head-item item">action</span>
+        </div>
+        <div class="table-body">
+          <ng-container *ngIf="team?.length > 0; else noItems">
+            <div class="table-list table-row" *ngFor="let i of team">
+              <span class="table-list-item item">{{ i.name }}</span>
+              <span class="table-list-item item green-color">{{
+                i.position
+              }}</span>
+              <span class="table-list-item item image"
+                ><img [src]="i.image.url" alt="image"
+              /></span>
+              <span class="table-list-item item action">
+                <img
+                  src="../../../assets/img/svg/edit.svg"
+                  alt="image"
+                  class="clickable edit"
+                  title="Edit"
+                  (click)="openEditModal(i, (modalHeaderName = 'Finance'))"
+                />
+                <img
+                  src="../../../assets/img/svg/Delete.svg"
+                  alt="image"
+                  class="clickable delete"
+                  title="Delete"
+                  (click)="openDeleteModal(i)"
+                />
+              </span>
+            </div>
+          </ng-container>
+
+          <!-- If the Product List is empty -->
+          <ng-template #noItems>
+            <p style="text-align: center; font-weight: 500">Empty list</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Add Modal -->
+<!-- <div class="modal-area" [class.show-modal]="addModal || editModal">
+  <div class="modal">
+    <app-add
+      *ngIf="addModal"
+      [postUrl]="postTeamUrl"
+      [modalHeaderName]="modalHeaderName"
+      (addModal)="closeAddModal()"
+    ></app-add>
+    <app-edit
+      *ngIf="editModal"
+      [updateUrl]="updateTeamUrl"
+      [currentItem]="currentItem"
+      [modalHeaderName]="modalHeaderName"
+      (editModal)="closeEditModal()"
+    ></app-edit>
+  </div>
+</div> -->
+
+<!-- Delete Modal -->
+<div class="modal-area" [class.show-modal]="deleteModal">
+  <div class="modal delete-modal">
+    <app-delete
+      *ngIf="deleteModal"
+      [deleteUrl]="deleteTeamUrl"
+      [currentItem]="currentItem"
+      (deleteModal)="closeDeleteModal()"
+    ></app-delete>
+  </div>
+</div>
+
+<div class="modal-area" [class.show-modal]="addModal || editModal">
+  <div class="modal">
+    <!-- Modal -->
+    <div class="modal-head">
+      <h2>Add {{ modalHeaderName }}</h2>
+      <img
+        src="../../../assets/img/svg/close.svg"
+        alt="image"
+        class="close-icon clickable"
+        (click)="closeAddModal()"
+      />
+    </div>
+    <!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
+    <form [formGroup]="form" (ngSubmit)="addItem()">
+      <div class="form-field">
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          formControlName="name"
+          autocomplete="name"
+        />
+      </div>
+      <div class="form-field">
+        <input
+          type="text"
+          name="position"
+          placeholder="Position"
+          formControlName="position"
+          autocomplete="position"
+        />
+      </div>
+      <input
+        type="file"
+        style="display: none"
+        (change)="onFileSelect($event)"
+        #productImage
+      />
+      <!-- The input is set to display none. so this will show instead -->
+      <span (click)="productImage.click()" class="upload-img">
+        <div class="form-field">
+          Upload Image
+          <img src="../../../assets/img/svg/upload.svg" alt="" />
+        </div>
+        <h5 class="selected-img">{{ selectedFileName }}</h5>
+      </span>
+
+      <!-- Error -->
+      <span class="message red-color" id="message" [class.show]="showError">{{
+        errorMessage
+      }}</span>
+
+      <button class="btn dark-blue-btn clickable">
+        <span *ngIf="loading">Saving...</span>
+        <span *ngIf="!loading">Save</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Alert pop up -->
+<app-alert-popup
+  [alertPopupMessage]="alertPopupMessage"
+  [alertPopup]="alertPopup"
+></app-alert-popup>

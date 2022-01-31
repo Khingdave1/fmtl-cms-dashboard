@@ -8,24 +8,26 @@
         <div class="table-head table-row">
           <span class="table-head-item item">Name</span>
           <span class="table-head-item item">Email</span>
-          <span class="table-head-item item">Subject</span>
           <span class="table-head-item item">Message</span>
+          <span class="table-head-item item">Status</span>
           <span class="table-head-item item">action</span>
         </div>
         <div class="table-body">
-          <div class="table-list table-row">
-            <span class="table-list-item item image">David</span>
-            <span class="table-list-item item">dheyved1@gmail.com</span>
-            <span class="table-list-item item">Testing!</span>
-            <span class="table-list-item item"
-              >Testing! Lorem ipsum dolor, sit amet consectetur adipisicing
-              elit. Voluptates quibusdam officiis reiciendis reprehenderit dicta
-              earum voluptas tenetur enim corrupti, quaerat, consequuntur dolore
-              blanditiis quos nobis error quidem? Voluptates, quae itaque.</span
-            >
+          <div class="table-list table-row" *ngFor="let i of contactRequests">
+            <span class="table-list-item item image">{{ i.name }}</span>
+            <span class="table-list-item item">{{ i.email }}</span>
+            <span class="table-list-item item">
+              <p>
+                <strong class="green-color">{{ i.subject }}</strong> <br />
+                {{ i.message }}
+              </p>
+            </span>
+            <span class="table-list-item item green-color">{{
+              replyStatusMessage
+            }}</span>
             <span class="table-list-item item action">
               <img
-                src="../../../assets/img/svg/Delete.svg"
+                src="../../../assets/img/svg/reply.svg"
                 alt="image"
                 class="clickable reply"
                 title="Reply"
@@ -34,7 +36,7 @@
                 src="../../../assets/img/svg/Delete.svg"
                 alt="image"
                 class="clickable delete"
-                title="Reply"
+                title="Delete"
               />
             </span>
           </div>
@@ -76,7 +78,6 @@
 
         <div class="save-btn">
           <button class="btn sec-btn">Save changes</button>
-          <small>Saved successfully!</small>
         </div>
       </div>
     </div>

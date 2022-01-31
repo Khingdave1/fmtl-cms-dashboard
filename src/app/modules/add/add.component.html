@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal-head">
-  <h2>Add Finance</h2>
+  <h2>Add {{ modalHeaderName }}</h2>
   <img
     src="../../../assets/img/svg/close.svg"
     alt="image"
@@ -9,7 +9,7 @@
   />
 </div>
 <!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
-<form [formGroup]="form" (ngSubmit)="addFinance()">
+<form [formGroup]="form" (ngSubmit)="addItem()">
   <div class="form-field">
     <input
       type="text"
@@ -52,3 +52,9 @@
     <span *ngIf="!loading">Save</span>
   </button>
 </form>
+
+<!-- Alert pop up -->
+<app-alert-popup
+  [alertPopupMessage]="alertPopupMessage"
+  [alertPopup]="alertPopup"
+></app-alert-popup>
