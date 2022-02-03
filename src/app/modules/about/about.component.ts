@@ -12,8 +12,9 @@ export class AboutComponent implements OnInit {
 
   postTeamUrl: string = 'https://first-marina-be.herokuapp.com/about/team';
   updateTeamUrl: string = 'https://first-marina-be.herokuapp.com/about/team';
-  deleteTeamUrl: string = 'https://first-marina-be.herokuapp.com/pages/delete/finance';
+  deleteTeamUrl: string = 'https://first-marina-be.herokuapp.com/about/team';
   team: any;
+  board: any;
   addModal: boolean = false;
   deleteModal: boolean = false;
   editModal: boolean = false;
@@ -48,37 +49,25 @@ export class AboutComponent implements OnInit {
   getData() {
     // Send users data
     this.pagesService.getAllTeam().subscribe((res: any) => {
-      this.team = res.data
+      // this.team = res.data
+      this.team = []
+      this.board = []
+
+      res.data.forEach((r: any) => {
+        // If Designation is Team
+        if (r.designation == 'team') {
+          this.team.push(r)
+        } else {
+          this.board.push(r)
+          console.log(this.board)
+        }
+
+      });
     }, ((error: any) => {
       console.log(error)
     }))
   }
 
-  // Open Add Modal
-  openAddModal(title: any) {
-    this.addModal = true
-    // Set Modal name
-    this.modalHeaderName = title
-  }
-
-  // Close Add Modal
-  closeAddModal() {
-    this.addModal = false
-  }
-
-  // Open Edit Modal
-  openEditModal(dataId: any, title: any) {
-    this.editModal = true
-    // Push dataId to currentItem
-    this.currentItem = dataId
-    // Set Modal name
-    this.modalHeaderName = title
-  }
-
-  // Close Edit Modal
-  closeEditModal() {
-    this.editModal = false
-  }
 
   // Open Delete Modal
   openDeleteModal(dataId: any) {
@@ -114,8 +103,8 @@ export class AboutComponent implements OnInit {
     formData.append("name", this.form.get('name')!.value);
     formData.append("position", this.form.get('position')!.value);
     formData.append("images", this.form.get('images')!.value);
-    formData.append("handles", [{ facebook: "www.fb.me" }]);
-    console.log(formData.append("handles", [{ facebook: "www.fb.me" }]))
+    formData.append("handles", 'facebook: "www.fb.me"');
+    formData.append("designation", 'team');
 
     try {
       const result = await this.pagesService.addPage(formData, this.postTeamUrl)
@@ -141,6 +130,32 @@ export class AboutComponent implements OnInit {
       // Set loading to false
       this.loading = false
     }
+  }
+
+  // Open Add Modal
+  openAddModal(title: any) {
+    this.addModal = true
+    // Set Modal name
+    this.modalHeaderName = title
+  }
+
+  // Close Add Modal
+  closeAddModal() {
+    this.addModal = false
+  }
+
+  // Open Edit Modal
+  openEditModal(dataId: any, title: any) {
+    this.editModal = true
+    // Push dataId to currentItem
+    this.currentItem = dataId
+    // Set Modal name
+    this.modalHeaderName = title
+  }
+
+  // Close Edit Modal
+  closeEditModal() {
+    this.editModal = false
   }
 
 }

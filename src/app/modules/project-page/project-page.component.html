@@ -1,11 +1,11 @@
 <div class="main-body-content">
   <section class="projects">
     <div class="header">
-      <h2>Our Projects</h2>
+      <h2>Project</h2>
       <span>
         <button
           class="btn dark-blue-btn"
-          (click)="openAddModal((modalHeaderName = 'a Project'))"
+          (click)="openAddModal((modalHeaderName = 'Project'))"
         >
           Add New
         </button>
@@ -23,7 +23,9 @@
           <ng-container *ngIf="projects?.length > 0; else noItems">
             <div class="table-list table-row" *ngFor="let i of projects">
               <span class="table-list-item item">{{ i.name }}</span>
-              <span class="table-list-item item">{{ i.description }}</span>
+              <span class="table-list-item item green-color">{{
+                i.description
+              }}</span>
               <span
                 class="table-list-item item image"
                 *ngFor="let childItem of i.images"

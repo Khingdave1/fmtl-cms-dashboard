@@ -2,23 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { PagesService } from 'src/app/services/pages.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  selector: 'app-project-page',
+  templateUrl: './project-page.component.html',
+  styleUrls: ['./project-page.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectPageComponent implements OnInit {
 
   projects: any;
-  postUrl: string = 'https://first-marina-be.herokuapp.com/projects';
-  updateProjectUrl: string = 'https://first-marina-be.herokuapp.com/projects';
-  deleteProjectUrl: string = 'https://first-marina-be.herokuapp.com/projects';
+  postUrl: string = 'https://first-marina-be.herokuapp.com/pages/add/project';
+  updateProjectUrl: string = 'https://first-marina-be.herokuapp.com/pages/update/project';
+  deleteProjectUrl: string = 'https://first-marina-be.herokuapp.com/pages/delete/project';
 
   addModal: boolean = false;
   deleteModal: boolean = false;
   editModal: boolean = false;
   currentItem: any;
   modalHeaderName: string = "";
-
 
   constructor(private pagesService: PagesService) { }
 
@@ -30,8 +29,8 @@ export class ProjectsComponent implements OnInit {
   // Get Data
   getData() {
     // Send users data
-    this.pagesService.getAllProjects().subscribe((res: any) => {
-      this.projects = res.data.theproject
+    this.pagesService.getAllPages().subscribe((res: any) => {
+      this.projects = res.data.project
     }, ((error: any) => {
       console.log(error)
     }))

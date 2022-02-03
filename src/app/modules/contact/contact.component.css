@@ -1,3 +1,5 @@
+@import "../../../assets/css/add-edit-modal.css";
+
 /* contact Data starts */
 .contact-data .table .table-row {
   grid-template-columns: repeat(8, 1fr);

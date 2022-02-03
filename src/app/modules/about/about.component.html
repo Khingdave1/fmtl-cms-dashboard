@@ -1,4 +1,5 @@
 <div class="main-body-content">
+  <!-- Board of Directors -->
   <section class="team">
     <div class="header">
       <h2>Board of Directors</h2>
@@ -22,7 +23,7 @@
         <div class="table-body">
           <ng-container *ngIf="team?.length > 0; else noItems">
             <div class="table-list table-row" *ngFor="let i of team">
-              <span class="table-list-item item">{{ i.name }}</span>
+              <span class="table-list-item item">{{ i.name | titlecase }}</span>
               <span class="table-list-item item green-color">{{
                 i.position
               }}</span>
@@ -35,7 +36,66 @@
                   alt="image"
                   class="clickable edit"
                   title="Edit"
-                  (click)="openEditModal(i, (modalHeaderName = 'Finance'))"
+                  (click)="openEditModal(i, (modalHeaderName = 'Board'))"
+                />
+                <img
+                  src="../../../assets/img/svg/Delete.svg"
+                  alt="image"
+                  class="clickable delete"
+                  title="Delete"
+                  (click)="openDeleteModal(i)"
+                />
+              </span>
+            </div>
+          </ng-container>
+
+          <!-- If the Product List is empty -->
+          <ng-template #noItems>
+            <p style="text-align: center; font-weight: 500">Empty list</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Management -->
+  <section class="team">
+    <div class="header">
+      <h2>Management</h2>
+      <span>
+        <button
+          class="btn dark-blue-btn"
+          (click)="openAddModal((modalHeaderName = 'Management'))"
+        >
+          Add New
+        </button>
+      </span>
+    </div>
+    <div class="body">
+      <div class="table">
+        <div class="table-head table-row">
+          <span class="table-head-item item">Name</span>
+          <span class="table-head-item item">Role</span>
+          <span class="table-head-item item">Image</span>
+          <span class="table-head-item item">action</span>
+        </div>
+        <div class="table-body">
+          <ng-container *ngIf="board?.length > 0; else noItems">
+            <div class="table-list table-row" *ngFor="let i of board">
+              <span class="table-list-item item">{{ i.name | titlecase }}</span>
+              <span class="table-list-item item green-color">{{
+                i.position
+              }}</span>
+              <span class="table-list-item item image"
+                ><img [src]="i.image.url" alt="image"
+              /></span>
+              <span class="table-list-item item action">
+                <img
+                  src="../../../assets/img/svg/edit.svg"
+                  alt="image"
+                  class="clickable edit"
+                  title="Edit"
+                  (click)="openEditModal(i, (modalHeaderName = 'Management'))"
                 />
                 <img
                   src="../../../assets/img/svg/Delete.svg"

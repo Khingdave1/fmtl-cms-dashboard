@@ -16,6 +16,7 @@ import { DeleteComponent } from 'src/app/modules/delete/delete.component';
 import { AlertPopupComponent } from 'src/app/modules/alert-popup/alert-popup.component';
 import { InvestmentComponent } from 'src/app/modules/investment/investment.component';
 import { FinanceComponent } from 'src/app/modules/finance/finance.component';
+import { ProjectPageComponent } from 'src/app/modules/project-page/project-page.component';
 
 
 
@@ -27,6 +28,7 @@ import { FinanceComponent } from 'src/app/modules/finance/finance.component';
     ProjectsComponent,
     InvestmentComponent,
     FinanceComponent,
+    ProjectPageComponent,
     AboutComponent,
     ContactComponent,
     AddComponent,

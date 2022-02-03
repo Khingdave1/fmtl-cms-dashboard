@@ -1,1 +1,36 @@
-<p>reply works!</p>
+<!-- Modal -->
+<div class="modal-head">
+  <h2>Reply</h2>
+  <img
+    src="../../../assets/img/svg/close.svg"
+    alt="image"
+    class="close-icon clickable"
+    (click)="closeReplyModal()"
+  />
+</div>
+<!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
+<form [formGroup]="form" (ngSubmit)="replyMessage()">
+  <div class="form-field">
+    <textarea
+      placeholder="Message"
+      cols="30"
+      rows="4"
+      formControlName="message"
+    ></textarea>
+  </div>
+  <!-- Error -->
+  <span class="message red-color" id="message" [class.show]="showError">{{
+    errorMessage
+  }}</span>
+
+  <button class="btn dark-blue-btn clickable">
+    <span *ngIf="loading">Sending...</span>
+    <span *ngIf="!loading">Send</span>
+  </button>
+</form>
+
+<!-- Alert pop up -->
+<app-alert-popup
+  [alertPopupMessage]="alertPopupMessage"
+  [alertPopup]="alertPopup"
+></app-alert-popup>

@@ -22,7 +22,7 @@ export class DeleteComponent implements OnInit {
 
   // Delete Finance
   deleteItem(dataId: any) {
-    this.pagesService.deleteFinancePage(this.deleteUrl, dataId).subscribe((res: any) => {
+    this.pagesService.deletePage(this.deleteUrl, dataId).subscribe((res: any) => {
       console.log(res.message)
 
       // Show alert message

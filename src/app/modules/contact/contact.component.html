@@ -31,6 +31,7 @@
                 alt="image"
                 class="clickable reply"
                 title="Reply"
+                (click)="openReplyModal()"
               />
               <img
                 src="../../../assets/img/svg/Delete.svg"
@@ -83,3 +84,27 @@
     </div>
   </section>
 </div>
+
+<!-- Delete Modal -->
+<div class="modal-area" [class.show-modal]="replyModal">
+  <div class="modal delete-modal">
+    <app-reply
+      *ngIf="replyModal"
+      [replyUrl]="replyMessageUrl"
+      [currentItem]="currentItem"
+      (closeModal)="closeReplyModal()"
+    ></app-reply>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<!-- <div class="modal-area" [class.show-modal]="deleteModal">
+  <div class="modal delete-modal">
+    <app-delete
+      *ngIf="deleteModal"
+      [deleteUrl]="deleteFinanceUrl"
+      [currentItem]="currentItem"
+      (deleteModal)="closeDeleteModal()"
+    ></app-delete>
+  </div>
+</div> -->
