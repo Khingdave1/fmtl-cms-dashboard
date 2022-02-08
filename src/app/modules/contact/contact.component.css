@@ -5,19 +5,20 @@
   grid-template-columns: repeat(8, 1fr);
 }
 .contact-data .item:nth-child(1) {
-  grid-column: 1 / 2;
+  grid-column: 1 / 4;
 }
 .contact-data .item:nth-child(2) {
-  grid-column: 2 / 4;
+  grid-column: 4 / 6;
 }
 .contact-data .item:nth-child(3) {
-  grid-column: 4 / 7;
+  grid-column: 6 / 8;
 }
 .contact-data .item:nth-child(4) {
-  grid-column: 7 / 8;
-}
-.contact-data .item:nth-child(5) {
   grid-column: 8 / 9;
+}
+.contact-data .item strong {
+  margin-bottom: 1rem;
+  display: block;
 }
 /* contact Data ends */
 

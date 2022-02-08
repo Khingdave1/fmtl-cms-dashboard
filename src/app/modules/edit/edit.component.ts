@@ -56,7 +56,6 @@ export class EditComponent implements OnInit {
       description: this.editForm.get('description')!.value
     }
 
-    console.log(data)
     this.pagesService.updatePage(this.updateUrl, dataId, data).subscribe((res: any) => {
       console.log(res)
 

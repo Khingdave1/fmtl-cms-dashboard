@@ -21,8 +21,8 @@
           <span class="table-head-item item">action</span>
         </div>
         <div class="table-body">
-          <ng-container *ngIf="team?.length > 0; else noItems">
-            <div class="table-list table-row" *ngFor="let i of team">
+          <ng-container *ngIf="management?.length > 0; else noItems">
+            <div class="table-list table-row" *ngFor="let i of management">
               <span class="table-list-item item">{{ i.name | titlecase }}</span>
               <span class="table-list-item item green-color">{{
                 i.position

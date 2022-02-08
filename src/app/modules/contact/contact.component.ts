@@ -9,11 +9,13 @@ import { ContactService } from 'src/app/services/contact.service';
 export class ContactComponent implements OnInit {
 
   replyModal: any;
-  replyMessageUrl: 'https://first-marina-be.herokuapp.com/pages/';
+  deleteModal: any;
   currentItem: any;
 
+  deleteUrl: string = 'https://first-marina-be.herokuapp.com/contact/requests';
+
   contactRequests: any;
-  replyStatusMessage: string = "Pending!";
+  replyStatusMessage: string = "No response";
   replyStatus: any;
   constructor(private contactService: ContactService) { }
 
@@ -22,8 +24,10 @@ export class ContactComponent implements OnInit {
   }
 
   // Open Add Modal
-  openReplyModal() {
-    this.replyModal = TextTrackCueList
+  openReplyModal(dataId: any) {
+    this.replyModal = true
+    // Push dataId to currentItem
+    this.currentItem = dataId
   }
 
   // Close Add Modal
@@ -36,21 +40,33 @@ export class ContactComponent implements OnInit {
     // Send users data
     this.contactService.getAllPages().subscribe((res: any) => {
       this.contactRequests = res.data
+      console.log(this.contactRequests)
 
       // Get Replied status
-      this.contactRequests.forEach((i: any) => {
-        let item = i.replied
-        this.replyStatus = item
-        // Set value to replyStatusMessage if replyStatus is true
-        if (this.replyStatus == true) {
-          this.replyStatusMessage = "Replied!"
-        }
-      })
+      // this.contactRequests.forEach((i: any) => {
+      //   let item = i.replied
+      //   this.replyStatus = item
+      //   // Set value to replyStatusMessage if replyStatus is true
+      //   if (this.replyStatus == true) {
+      //     this.replyStatusMessage = "Replied!"
+      //   }
+      // })
 
 
     }, ((error: any) => {
       console.log(error)
     }))
+  }
+
+  // Open Delete Modal
+  openDeleteModal(dataId: any) {
+    this.deleteModal = true
+    this.currentItem = dataId
+  }
+
+  // Close Delete Modal
+  closeDeleteModal() {
+    this.deleteModal = false
   }
 
 }

@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit {
   postTeamUrl: string = 'https://first-marina-be.herokuapp.com/about/team';
   updateTeamUrl: string = 'https://first-marina-be.herokuapp.com/about/team';
   deleteTeamUrl: string = 'https://first-marina-be.herokuapp.com/about/team';
-  team: any;
+  management: any;
   board: any;
   addModal: boolean = false;
   deleteModal: boolean = false;
@@ -50,17 +50,19 @@ export class AboutComponent implements OnInit {
     // Send users data
     this.pagesService.getAllTeam().subscribe((res: any) => {
       // this.team = res.data
-      this.team = []
+      this.management = []
       this.board = []
+      console.log(res.data)
 
       res.data.forEach((r: any) => {
         // If Designation is Team
-        if (r.designation == 'team') {
-          this.team.push(r)
+        if (r.designation === 'management') {
+          this.management.push(r)
+          console.log(this.management)
         } else {
           this.board.push(r)
-          console.log(this.board)
         }
+        // console.log(this.board)
 
       });
     }, ((error: any) => {
@@ -69,16 +71,6 @@ export class AboutComponent implements OnInit {
   }
 
 
-  // Open Delete Modal
-  openDeleteModal(dataId: any) {
-    this.deleteModal = true
-    this.currentItem = dataId
-  }
-
-  // Close Delete Modal
-  closeDeleteModal() {
-    this.deleteModal = false
-  }
 
 
 
@@ -104,7 +96,12 @@ export class AboutComponent implements OnInit {
     formData.append("position", this.form.get('position')!.value);
     formData.append("images", this.form.get('images')!.value);
     formData.append("handles", 'facebook: "www.fb.me"');
-    formData.append("designation", 'team');
+    formData.append("designation", 'management');
+
+    // Display the key/value pairs
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
 
     try {
       const result = await this.pagesService.addPage(formData, this.postTeamUrl)
@@ -156,6 +153,17 @@ export class AboutComponent implements OnInit {
   // Close Edit Modal
   closeEditModal() {
     this.editModal = false
+  }
+
+  // Open Delete Modal
+  openDeleteModal(dataId: any) {
+    this.deleteModal = true
+    this.currentItem = dataId
+  }
+
+  // Close Delete Modal
+  closeDeleteModal() {
+    this.deleteModal = false
   }
 
 }

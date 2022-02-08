@@ -9,7 +9,7 @@ import { PagesService } from 'src/app/services/pages.service';
 })
 export class ReplyComponent implements OnInit {
 
-  @Input() replyUrl: string;
+  replyUrl = 'https://first-marina-be.herokuapp.com/contact/requests/reply';
   @Input() currentItem: any;
   @Output() replyModal: EventEmitter<any> = new EventEmitter();
 
@@ -29,6 +29,7 @@ export class ReplyComponent implements OnInit {
 
     // Form
     this.form = this.formBuilder.group({
+      subject: [''],
       message: ['']
     })
   }
@@ -40,37 +41,40 @@ export class ReplyComponent implements OnInit {
 
 
   // Post Data
-  async replyMessage() {
-    // Start loading
+  replyMessage(dataId: any, replyTo: any) {
+    // Set lloading to true
     this.loading = true
 
-    var formData: any = new FormData();
-    formData.append("message", this.form.get('message')!.value);
+    let data = {
+      replyTo: replyTo,
+      subject: this.form.get('subject')!.value,
+      html: this.form.get('message')!.value
+    }
 
-    try {
-      const result = await this.pagesService.replyPage(formData, this.replyUrl)
+    this.pagesService.yesPage(this.replyUrl, dataId, data).subscribe((res: any) => {
+      console.log(res)
 
       // Set loading to false
       this.loading = false
 
       // Show alert message
-      this.alertPopupMessage = result.message
+      this.alertPopupMessage = res.message
       this.alertPopup = true
 
       // Reload the page
-      // window.location.reload();
+      window.location.reload();
 
-    } catch (error: any) {
+    }, ((error: any) => {
       console.log(error)
       //  Show error message
-      this.errorMessage = error.message
+      this.errorMessage = error.error.message
 
       // Display error
       this.showError = true
 
       // Set loading to false
       this.loading = false
-    }
+    }))
   }
 
 

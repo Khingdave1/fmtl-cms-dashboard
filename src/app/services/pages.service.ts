@@ -10,7 +10,7 @@ export class PagesService {
   getPagesUrl = 'https://first-marina-be.herokuapp.com/pages';
   getTeamUrl = 'https://first-marina-be.herokuapp.com/about/team';
   getProjectsUrl = 'https://first-marina-be.herokuapp.com/projects';
-  token = localStorage.getItem('token')
+  token = localStorage.getItem('token');
 
   constructor(private http: HttpClient) {
     this.httpOptions = {
@@ -75,6 +75,11 @@ export class PagesService {
     } catch (error: any) {
       throw new Error(error.message)
     }
+  }
+
+  // Update Finance page
+  yesPage(replyUrl: any, dataId: any, payload: any) {
+    return this.http.post(replyUrl + "/" + dataId, payload, this.httpOptions)
   }
 
   // Update Finance page

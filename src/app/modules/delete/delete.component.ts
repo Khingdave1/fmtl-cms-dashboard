@@ -18,6 +18,7 @@ export class DeleteComponent implements OnInit {
   constructor(private pagesService: PagesService) { }
 
   ngOnInit(): void {
+    console.log(this.currentItem)
   }
 
   // Delete Finance

@@ -6,24 +6,25 @@
     <div class="body">
       <div class="table">
         <div class="table-head table-row">
-          <span class="table-head-item item">Name</span>
-          <span class="table-head-item item">Email</span>
+          <!-- <span class="table-head-item item">Name</span> -->
+          <span class="table-head-item item">Infomation</span>
           <span class="table-head-item item">Message</span>
-          <span class="table-head-item item">Status</span>
+          <span class="table-head-item item">Response</span>
           <span class="table-head-item item">action</span>
         </div>
         <div class="table-body">
           <div class="table-list table-row" *ngFor="let i of contactRequests">
-            <span class="table-list-item item image">{{ i.name }}</span>
-            <span class="table-list-item item">{{ i.email }}</span>
-            <span class="table-list-item item">
-              <p>
-                <strong class="green-color">{{ i.subject }}</strong> <br />
-                {{ i.message }}
-              </p>
+            <!-- <span class="table-list-item item image">1</span> -->
+            <span class="table-list-item item info">
+              <strong class="">{{ i.name }}</strong>
+              <p>{{ i.email }}</p>
             </span>
-            <span class="table-list-item item green-color">{{
-              replyStatusMessage
+            <span class="table-list-item item">
+              <strong class="green-color">{{ i.subject }}</strong>
+              <p>{{ i.message }}</p>
+            </span>
+            <span class="table-list-item item">{{
+              i.reply || replyStatusMessage
             }}</span>
             <span class="table-list-item item action">
               <img
@@ -31,13 +32,14 @@
                 alt="image"
                 class="clickable reply"
                 title="Reply"
-                (click)="openReplyModal()"
+                (click)="openReplyModal(i)"
               />
               <img
                 src="../../../assets/img/svg/Delete.svg"
                 alt="image"
                 class="clickable delete"
                 title="Delete"
+                (click)="openDeleteModal(i)"
               />
             </span>
           </div>
@@ -90,21 +92,20 @@
   <div class="modal delete-modal">
     <app-reply
       *ngIf="replyModal"
-      [replyUrl]="replyMessageUrl"
       [currentItem]="currentItem"
-      (closeModal)="closeReplyModal()"
+      (replyModal)="closeReplyModal()"
     ></app-reply>
   </div>
 </div>
 
 <!-- Delete Modal -->
-<!-- <div class="modal-area" [class.show-modal]="deleteModal">
+<div class="modal-area" [class.show-modal]="deleteModal">
   <div class="modal delete-modal">
     <app-delete
       *ngIf="deleteModal"
-      [deleteUrl]="deleteFinanceUrl"
+      [deleteUrl]="deleteUrl"
       [currentItem]="currentItem"
       (deleteModal)="closeDeleteModal()"
     ></app-delete>
   </div>
-</div> -->
+</div>

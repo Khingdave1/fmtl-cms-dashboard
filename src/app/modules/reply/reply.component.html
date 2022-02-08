@@ -8,8 +8,19 @@
     (click)="closeReplyModal()"
   />
 </div>
-<!-- (ngSubmit)="addFinanceData(usersForm.value)" #usersForm="ngForm"  -->
-<form [formGroup]="form" (ngSubmit)="replyMessage()">
+<form
+  [formGroup]="form"
+  (ngSubmit)="replyMessage(currentItem._id, currentItem.email)"
+>
+  <div class="form-field">
+    <input
+      type="text"
+      name="subject"
+      placeholder="Subject"
+      formControlName="subject"
+      autocomplete="subject"
+    />
+  </div>
   <div class="form-field">
     <textarea
       placeholder="Message"
